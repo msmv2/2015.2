@@ -18,7 +18,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class WAAction {
-    public static WAMessage processWAMessage(String input, VkApi api) throws IOException {
+    public static WAMessage processWAMessage(String input, VkApi api) throws Exception {
         ResponseBody waResponse = WARequestAction.getResponsefromWA(input);
         String baseImage = ImageBuilder.textWrite("VK Bot /WolframAlpha/ results");
         try {
@@ -39,7 +39,7 @@ public class WAAction {
                         if (nSubNode.getNodeType() == Node.ELEMENT_NODE) {
                             Element subElem = (Element) nSubNode;
                             Element imgElem = (Element) subElem.getElementsByTagName("img").item(0);
-                            baseImage = ImageBuilder.combImagesfromURL(baseImage, imgElem.getAttribute("src"));
+                            baseImage = ImageBuilder.combImagesFromURL(baseImage, imgElem.getAttribute("src"));
                         }
                     }
 
@@ -54,8 +54,6 @@ public class WAAction {
         Photos userver = api.getPhotos();
         Call<Result<UploadServer>> m2 = userver.getMessagesUploadServer();
         UploadServer mu = Result.call(m2);
-        MediaType MEDIA_TYPE_MARKDOWN
-                = MediaType.parse("text/x-markdown; charset=utf-8");
         OkHttpClient client = new OkHttpClient();
         File file = new File(baseImage);
 
@@ -70,6 +68,8 @@ public class WAAction {
                 .post(requestBody)
                 .build();
         Response resp2 = client.newCall(request).execute();
+
+        if (!file.delete()) throw new Exception("File delete error");
         if (!resp2.isSuccessful()) throw new IOException("Unexpected code " + resp2);
         String photo = resp2.body().string();
 
