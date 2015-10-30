@@ -106,15 +106,9 @@
             </dependency>
 
             <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>4.4</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
+                <groupId>com.google.dagger</groupId>
+                <artifactId>dagger</artifactId>
+                <version>2.0.1</version>
             </dependency>
 
             <dependency>
@@ -156,7 +150,9 @@
         <module>structs</module>
         <module>coursej</module>
         <module>s000000</module>
+        <module>s000001</module>
         <module>s131250</module>
+        <module>s131226</module>
         <module>starter</module>
     </modules>
 </project>

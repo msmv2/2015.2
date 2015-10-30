@@ -91,7 +91,18 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>s000001</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>s131250</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>s131226</artifactId>
             <version>${project.version}</version>
         </dependency>
 
